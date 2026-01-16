@@ -1,13 +1,13 @@
-"use client";
-
 import { motion } from "framer-motion";
 import { ArrowUpRight, Mail, Linkedin, Github } from "lucide-react";
 import Link from "next/link";
+import { Spotlight } from "@/components/ui/spotlight";
 
 export function Contact() {
   return (
     <footer className="w-full bg-black text-white py-24 px-4 md:px-12 relative overflow-hidden">
-      <div className="flex flex-col items-center justify-center text-center max-w-4xl mx-auto">
+      <Spotlight className="-top-40 left-0 opacity-30" fill="white" />
+      <div className="flex flex-col items-center justify-center text-center max-w-4xl mx-auto relative z-10">
         <motion.p 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

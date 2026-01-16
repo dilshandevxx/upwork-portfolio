@@ -1,6 +1,5 @@
-"use client";
-
 import { motion } from "framer-motion";
+import { Spotlight } from "@/components/ui/spotlight";
 
 const skills = [
   "Next.js",
@@ -15,8 +14,9 @@ const skills = [
 
 export function About() {
   return (
-    <section className="py-24 px-4 md:px-12 w-full bg-neutral-900 border-t border-white/5">
-      <div className="flex flex-col md:flex-row gap-16 md:gap-32">
+    <section className="py-24 px-4 md:px-12 w-full bg-neutral-900 border-t border-white/5 relative overflow-hidden">
+      <Spotlight className="-top-40 left-0 opacity-20" fill="white" />
+      <div className="flex flex-col md:flex-row gap-16 md:gap-32 relative z-10">
         <div className="flex-1">
           <motion.h3 
             initial={{ opacity: 0 }}

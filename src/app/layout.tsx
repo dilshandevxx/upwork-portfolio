@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, Syne } from "next/font/google";
 import { SmoothScroll } from "@/components/smooth-scroll";
+import { Cursor } from "@/components/ui/cursor";
+import { Noise } from "@/components/ui/noise";
 import { cn } from "@/lib/utils";
 import "./globals.css";
 
@@ -30,12 +32,14 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth">
       <body
         className={cn(
-          "antialiased bg-background text-foreground min-h-screen",
+          "antialiased bg-background text-foreground min-h-screen cursor-none", // Hide default cursor
           inter.variable,
           syne.variable
         )}
       >
         <SmoothScroll>
+          <Noise />
+          <Cursor />
           {children}
         </SmoothScroll>
       </body>

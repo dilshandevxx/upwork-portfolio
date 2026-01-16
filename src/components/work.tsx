@@ -1,14 +1,14 @@
-"use client";
-
 import { motion } from "framer-motion";
 import { projects } from "@/data/projects";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
+import { Spotlight } from "@/components/ui/spotlight";
 
 export function Work() {
   return (
-    <section className="py-24 px-4 md:px-12 w-full bg-background relative z-10">
-      <div className="flex flex-col mb-16">
+    <section className="py-24 px-4 md:px-12 w-full bg-neutral-950 relative z-10 overflow-hidden">
+      <Spotlight className="-top-40 left-0 opacity-20" fill="white" />
+      <div className="flex flex-col mb-16 relative z-10">
         <motion.h3 
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}

@@ -1,7 +1,6 @@
-"use client";
-
 import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
+import { Spotlight } from "@/components/ui/spotlight";
 
 export function Hero() {
   const textVariants = {
@@ -18,9 +17,10 @@ export function Hero() {
   };
 
   return (
-    <section className="h-screen w-full flex flex-col justify-center items-center relative overflow-hidden px-4">
+    <section className="h-screen w-full flex flex-col justify-center items-center relative overflow-hidden px-4 bg-black">
       {/* Background decoration */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.03),transparent_50%)]" />
+      <Spotlight className="-top-20" fill="white" />
 
       <div className="z-10 flex flex-col items-center">
         <motion.div custom={0} initial="hidden" animate="visible" variants={textVariants}>
