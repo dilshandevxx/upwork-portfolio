@@ -43,10 +43,15 @@ export function Process() {
     <section ref={targetRef} className="relative h-[300vh] bg-neutral-950">
       <div className="sticky top-0 flex h-screen items-center overflow-hidden">
         
-        {/* Intro Text (Absolute to stay fixed or move slightly?) */}
+        {/* Intro Text */}
         <div className="absolute top-12 left-6 md:left-12 z-20">
-             <h3 className="text-xs uppercase tracking-widest text-secondary mb-2">The Workflow</h3>
-             <h2 className="text-4xl font-display font-bold">Process</h2>
+           <div className="flex items-center gap-4 mb-4 border border-white/10 bg-white/5 backdrop-blur-sm rounded-full px-4 py-2 w-fit">
+             <div className="w-2 h-2 rounded-full bg-white shadow-[0_0_10px_rgba(255,255,255,0.5)]" />
+             <span className="text-[10px] uppercase tracking-[0.2em] text-neutral-300 font-medium">The Workflow</span>
+           </div>
+           <h2 className="text-5xl md:text-7xl font-display font-bold tracking-tighter text-white">
+             Process
+           </h2>
         </div>
 
         <motion.div style={{ x }} className="flex gap-12 px-12 md:px-24">
