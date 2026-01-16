@@ -2,120 +2,105 @@
 
 import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
+import { useEffect, useState } from "react";
+
+const thumbnails = [
+  { id: "01", src: "/projects/1.jpg", alt: "Project 1" }, // Placeholders, will use colored divs if no images
+  { id: "02", src: "/projects/2.jpg", alt: "Project 2" },
+  { id: "03", src: "/projects/3.jpg", alt: "Project 3" },
+  { id: "04", src: "/projects/4.jpg", alt: "Project 4" },
+];
 
 export function Hero() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.3,
-      },
-    },
-  };
+  const [time, setTime] = useState("");
 
-  const charVariants = {
-    hidden: { y: 100, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.8,
-        ease: [0.215, 0.61, 0.355, 1],
-      },
-    },
-  };
-
-  const title1 = "CREATIVE";
-  const title2 = "DEVELOPER";
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      setTime(now.toLocaleTimeString("en-US", { hour12: false, hour: "2-digit", minute: "2-digit", second: "2-digit" }));
+    };
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
-    <section className="h-screen w-full flex flex-col justify-center items-center relative overflow-hidden px-4 bg-neutral-950">
-      {/* Subtle Gradient Background */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-neutral-900/30 via-neutral-950 to-neutral-950" />
+    <section className="h-screen w-full relative bg-neutral-950 text-white overflow-hidden flex flex-col justify-between">
       
-      <div className="z-10 flex flex-col items-center justify-center w-full max-w-[90vw]">
-        
-        {/* Top Label */}
-        <motion.div 
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1 }}
-          className="mt-32 flex justify-between items-center w-full max-w-lg mb-12 border border-white/10 bg-white/5 backdrop-blur-sm rounded-full px-6 py-3"
-        >
-          <span className="text-[10px] md:text-xs uppercase tracking-[0.2em] text-neutral-400 font-medium">Est. 2026</span>
-          <div className="h-3 w-[1px] bg-white/20" />
-          <span className="text-[10px] md:text-xs uppercase tracking-[0.2em] text-neutral-400 font-medium">Portfolio</span>
-        </motion.div>
-
-        {/* Main Typography */}
-        <div className="flex flex-col items-center leading-none">
-          {/* CREATIVE */}
-          <motion.div 
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="flex overflow-hidden"
-          >
-            {title1.split("").map((char, i) => (
-              <motion.span 
-                key={i} 
-                variants={charVariants}
-                className="text-[12vw] md:text-[13vw] font-bold tracking-tighter text-white"
-              >
-                {char}
-              </motion.span>
-            ))}
-          </motion.div>
-
-          {/* DEVELOPER */}
-          <motion.div 
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="flex overflow-hidden -mt-[2vw] md:-mt-[3vw]"
-          >
-            {title2.split("").map((char, i) => (
-              <motion.span 
-                key={i} 
-                variants={charVariants}
-                className="text-[12vw] md:text-[13vw] font-bold tracking-tighter text-white" // Solid white, no outline
-              >
-                {char}
-              </motion.span>
-            ))}
-          </motion.div>
+      {/* --- Grid Background --- */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        {/* Vertical Lines */}
+        <div className="w-full h-full flex justify-between px-4 md:px-12">
+            <div className="w-[1px] h-full bg-white/5" />
+            <div className="w-[1px] h-full bg-white/5" />
+            <div className="w-[1px] h-full bg-white/5" />
+            <div className="w-[1px] h-full bg-white/5 hidden md:block" />
         </div>
-
-        {/* Bottom Description */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2, duration: 0.8 }}
-          className="mt-12 max-w-lg text-center"
-        >
-          <p className="text-base md:text-lg text-neutral-400 font-light leading-relaxed text-balance">
-            Crafting digital experiences with <span className="text-white">precision</span> and <span className="text-white">purpose</span>.
-          </p>
-        </motion.div>
+        {/* Horizontal Lines (Top/Bottom specific) */}
+        <div className="absolute top-24 left-0 w-full h-[1px] bg-white/5" />
+        <div className="absolute bottom-64 left-0 w-full h-[1px] bg-white/5" />
       </div>
 
-      {/* Footer / Scroll Indicator */}
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 1 }}
-        className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4"
-      >
-        <span className="text-[10px] uppercase tracking-widest text-neutral-600">Scroll</span>
-        <motion.div 
-           animate={{ y: [0, 5, 0] }}
-           transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-        >
-           <ArrowDown className="w-4 h-4 text-neutral-600" />
-        </motion.div>
-      </motion.div>
+      {/* --- Top Content (Header-ish) --- */}
+      <div className="relative z-10 w-full px-4 md:px-12 pt-8 flex justify-between items-start font-mono text-xs md:text-sm text-neutral-400">
+        <div className="uppercase tracking-widest">
+           Dilshan Portfolio
+        </div>
+        <div className="flex gap-8 md:gap-16">
+          <span className="text-primary">[ WORK ]</span>
+          <span>INFO</span>
+          <span>ARCHIVE</span>
+        </div>
+      </div>
+
+      {/* --- Main Typography --- */}
+      <div className="relative z-10 w-full px-4 md:px-12 flex-1 flex flex-col justify-center">
+        <h1 className="text-[13vw] leading-[0.8] font-bold tracking-tighter uppercase font-display">
+          <motion.div initial={{ y: 100, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.8, ease: [0.215, 0.61, 0.355, 1] }}>
+            Creative
+          </motion.div>
+          <motion.div initial={{ y: 100, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.8, delay: 0.1, ease: [0.215, 0.61, 0.355, 1] }}>
+            Developer
+          </motion.div>
+        </h1>
+      </div>
+
+      {/* --- Middle Info Row --- */}
+      <div className="relative z-10 w-full px-4 md:px-12 flex justify-end md:justify-between items-end pb-8 md:pb-12 pointer-events-none">
+          <div className="hidden md:block max-w-xs font-mono text-xs text-neutral-400">
+            <p>DESIGNER &</p>
+            <p>DEVELOPER</p>
+          </div>
+          <div className="font-mono text-xs text-neutral-400 text-right">
+            <p>SRI LANKA, LK</p>
+            <p>{time}</p>
+          </div>
+      </div>
+
+      {/* --- Bottom Grid (Thumbnails) --- */}
+      <div className="relative z-10 w-full h-48 md:h-64 border-t border-white/5 grid grid-cols-2 md:grid-cols-4 divide-x divide-white/5">
+        {thumbnails.map((item, i) => (
+          <div key={i} className="relative group overflow-hidden">
+             {/* Hover Image Reveal */}
+             <div className={`absolute inset-0 bg-neutral-900 transition-colors duration-500 group-hover:bg-neutral-800`}>
+                {/* Fallback gradients since we don't have real images yet */}
+                <div className={`w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-gradient-to-br from-neutral-800 to-neutral-700`} />
+             </div>
+
+             {/* Content */}
+             <div className="absolute inset-0 p-4 flex flex-col justify-end">
+                <span className="font-mono text-xs text-neutral-500 mb-2">[{item.id}]</span>
+                <div className="w-full h-full flex items-center justify-center">
+                    {/* Placeholder colored block */}
+                    <div className="w-[80%] aspect-video bg-white/5 rounded-sm group-hover:scale-105 transition-transform duration-500" />
+                </div>
+             </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Aurora Ambience - Subtle behind everything */}
+      <div className="absolute top-[-20%] right-[-10%] w-[50vw] h-[50vw] bg-blue-900/10 blur-[150px] rounded-full pointer-events-none mix-blend-screen" />
     </section>
   );
 }
