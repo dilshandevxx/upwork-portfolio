@@ -1,63 +1,59 @@
 "use client";
 
-import { ArrowUpRight, Mail } from "lucide-react";
-import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 export function Contact() {
   return (
-    <footer id="contact" className="w-full bg-[#0a0a0a] border-b border-white/[0.05]">
+    <footer id="contact" className="w-full bg-[#0a0a0a] border-t border-white/[0.05] pt-24 pb-8 px-4 md:px-12 flex flex-col min-h-screen justify-between">
        
-       {/* Main Content Grid */}
-       <div className="grid grid-cols-1 md:grid-cols-12 divide-y md:divide-y-0 md:divide-x divide-white/[0.05] min-h-[60vh]">
-          
-          {/* CTA Column */}
-          <div className="col-span-1 md:col-span-8 p-8 md:p-16 flex flex-col justify-between">
-              <div>
-                 <span className="font-mono text-xs text-[#ccff00] tracking-widest uppercase mb-4 block">
-                    [ Get in Touch ]
-                 </span>
-                 <h2 className="text-5xl md:text-8xl font-bold font-display uppercase tracking-tighter text-[#e6e6e6] leading-[0.8]">
-                    Let's Work<br/>Together
-                 </h2>
-              </div>
+        {/* Main CTA */}
+        <div className="flex-1 flex flex-col justify-center max-w-[1400px] mx-auto w-full">
+            <span className="font-mono text-xs text-[#444] uppercase mb-8 ml-1">[ Initiate Contact ]</span>
+            
+            <div className="relative group">
+               <a href="mailto:hello@dilshan.dev" className="block relative z-10">
+                  <h2 className="text-[12vw] leading-[0.8] font-bold font-display uppercase text-[#e6e6e6] group-hover:text-white transition-colors mix-blend-exclusion">
+                     Let's<br/>Talk
+                  </h2>
+               </a>
+               {/* Decorative Terminal Cursor */}
+               <div className="w-[12vw] h-[0.8em] bg-[#ccff00] absolute bottom-2 right-[10%] animate-pulse opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+            </div>
 
-              <div className="mt-16">
-                 <Link href="mailto:contact@example.com" className="group inline-flex items-center gap-4 text-xl md:text-2xl text-white font-mono hover:text-[#ccff00] transition-colors">
-                    <span>hello@example.com</span>
-                    <ArrowUpRight className="w-6 h-6 group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" />
-                 </Link>
-              </div>
-          </div>
+            <div className="mt-12 flex items-center gap-4 text-[#888] group cursor-pointer hover:text-[#ccff00] transition-colors w-fit">
+                <span className="font-mono text-sm uppercase">Copy Email Address</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
+            </div>
+        </div>
 
-          {/* Links Column */}
-          <div className="col-span-1 md:col-span-4 flex flex-col divide-y divide-white/[0.05]">
-             
-             {/* Socials */}
-             <div className="flex-1 p-8 flex flex-col gap-4">
-                 <span className="font-mono text-xs text-[#666] uppercase mb-4">/ Socials</span>
-                 {["LinkedIn", "GitHub", "Twitter", "Instagram"].map(social => (
-                    <Link key={social} href="#" className="font-display text-2xl md:text-3xl font-bold text-[#333] hover:text-white transition-colors uppercase">
-                       {social}
-                    </Link>
-                 ))}
-             </div>
+        {/* Bottom Grid */}
+        <div className="w-full border-t border-white/[0.05] pt-8 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="flex flex-col gap-2">
+               <span className="font-mono text-[10px] text-[#444] uppercase">Socials</span>
+               <div className="flex flex-col gap-1 font-mono text-xs text-[#888] uppercase">
+                  <a href="#" className="hover:text-white hover:underline">LinkedIn</a>
+                  <a href="#" className="hover:text-white hover:underline">Twitter / X</a>
+                  <a href="#" className="hover:text-white hover:underline">GitHub</a>
+               </div>
+            </div>
 
-             {/* Footer Info */}
-             <div className="p-8 flex flex-col justify-end h-48 bg-[#0d0d0d]">
-                <div className="flex justify-between items-end">
-                   <div className="flex flex-col font-mono text-[10px] text-[#444] uppercase gap-1">
-                      <span>© 2026 Dilshan Portfolio</span>
-                      <span>All Rights Reserved</span>
-                   </div>
-                   <div className="font-mono text-[10px] text-[#444] uppercase text-right">
-                      Local Time<br/>
-                      Sri Lanka, LK
-                   </div>
-                </div>
-             </div>
-          </div>
+            <div className="flex flex-col gap-2">
+               <span className="font-mono text-[10px] text-[#444] uppercase">Location</span>
+               <span className="font-mono text-xs text-[#888] uppercase">Vienna, Austria</span>
+            </div>
 
-       </div>
+            <div className="flex flex-col gap-2">
+               <span className="font-mono text-[10px] text-[#444] uppercase">Time</span>
+               <span className="font-mono text-xs text-[#888] uppercase">Local: GMT+1</span>
+            </div>
+
+            <div className="flex flex-col justify-end text-right md:text-right">
+               <span className="font-mono text-[10px] text-[#333] uppercase">
+                  © 2026 Dilshan Portfolio. <br/> System Active.
+               </span>
+            </div>
+        </div>
+
     </footer>
   );
 }
