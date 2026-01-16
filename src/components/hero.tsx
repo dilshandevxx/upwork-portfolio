@@ -42,10 +42,11 @@ export function Hero() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1 }}
-          className="flex justify-between w-full max-w-md mb-8 md:mb-12"
+          className="mt-32 flex justify-between items-center w-full max-w-lg mb-12 border border-white/10 bg-white/5 backdrop-blur-sm rounded-full px-6 py-3"
         >
-          <span className="text-xs uppercase tracking-[0.2em] text-neutral-500">Est. 2026</span>
-          <span className="text-xs uppercase tracking-[0.2em] text-neutral-500">Portfolio</span>
+          <span className="text-[10px] md:text-xs uppercase tracking-[0.2em] text-neutral-400 font-medium">Est. 2026</span>
+          <div className="h-3 w-[1px] bg-white/20" />
+          <span className="text-[10px] md:text-xs uppercase tracking-[0.2em] text-neutral-400 font-medium">Portfolio</span>
         </motion.div>
 
         {/* Main Typography */}

@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 
 const steps = [
   {
@@ -31,60 +32,50 @@ const steps = [
 ];
 
 export function Process() {
+  const targetRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+  });
+
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-75%"]);
+
   return (
-    <section className="py-24 px-4 md:px-12 w-full bg-neutral-950 relative overflow-hidden">
-       {/* Ambient Light */}
-       <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-[128px] pointer-events-none" />
-
-      <div className="flex flex-col md:flex-row gap-16 md:gap-32 relative z-10">
-        <div className="md:w-1/3 md:sticky md:top-24 h-fit">
-          <motion.h3 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-xs uppercase tracking-widest text-secondary mb-4"
-          >
-            How it Works
-          </motion.h3>
-          <motion.h2 
-             initial={{ opacity: 0, scale: 0.9 }}
-             whileInView={{ opacity: 1, scale: 1 }}
-             viewport={{ once: true }}
-             transition={{ duration: 0.8 }}
-             className="text-4xl md:text-5xl font-bold font-display mb-6"
-          >
-            A Refined <br /> Process
-          </motion.h2>
-          <motion.p
-             initial={{ opacity: 0 }}
-             whileInView={{ opacity: 1 }}
-             viewport={{ once: true }}
-             transition={{ delay: 0.2 }} 
-             className="text-secondary text-lg text-balance"
-          >
-            My workflow is designed to be transparent, collaborative, and efficient, ensuring we hit every milestone with precision.
-          </motion.p>
+    <section ref={targetRef} className="relative h-[300vh] bg-neutral-950">
+      <div className="sticky top-0 flex h-screen items-center overflow-hidden">
+        
+        {/* Intro Text (Absolute to stay fixed or move slightly?) */}
+        <div className="absolute top-12 left-6 md:left-12 z-20">
+             <h3 className="text-xs uppercase tracking-widest text-secondary mb-2">The Workflow</h3>
+             <h2 className="text-4xl font-display font-bold">Process</h2>
         </div>
 
-        <div className="md:w-2/3 flex flex-col gap-12 md:gap-24">
-          {steps.map((step, index) => (
-            <motion.div
+        <motion.div style={{ x }} className="flex gap-12 px-12 md:px-24">
+          {steps.map((step) => (
+            <div
               key={step.number}
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ delay: index * 0.1, duration: 0.8 }}
-              className="flex flex-col gap-4 group"
+              className="relative h-[60vh] w-[80vw] md:w-[60vh] flex-shrink-0 flex flex-col justify-between p-8 md:p-12 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm overflow-hidden group hover:bg-white/10 transition-colors duration-500"
             >
-              <span className="text-6xl md:text-8xl font-display font-bold text-neutral-900 group-hover:text-primary/10 transition-colors duration-500">
-                {step.number}
-              </span>
-              <h3 className="text-2xl font-bold">{step.title}</h3>
-              <div className="h-px w-12 bg-primary/50 group-hover:w-full transition-all duration-700 ease-in-out" />
-              <p className="text-secondary max-w-md">{step.description}</p>
-            </motion.div>
+               {/* Background Number */}
+               <span className="absolute -bottom-12 -right-12 text-[12rem] font-bold text-white/5 group-hover:text-white/10 transition-colors pointer-events-none select-none">
+                 {step.number}
+               </span>
+               
+               <div>
+                 <span className="text-sm font-mono text-primary/80 border border-primary/20 px-3 py-1 rounded-full">{step.number}</span>
+               </div>
+               
+               <div className="relative z-10">
+                  <h3 className="text-3xl md:text-4xl font-bold mb-4 text-white group-hover:text-primary transition-colors">{step.title}</h3>
+                  <p className="text-secondary text-lg leading-relaxed text-balance">
+                    {step.description}
+                  </p>
+               </div>
+               
+               {/* Decorative line */}
+               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            </div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
