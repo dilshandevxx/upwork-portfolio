@@ -1,7 +1,8 @@
+"use client";
+
 import { motion } from "framer-motion";
 import { Plus } from "lucide-react";
 import { useState } from "react";
-import { Spotlight } from "@/components/ui/spotlight";
 
 const services = [
   {
@@ -35,7 +36,6 @@ export function Services() {
 
   return (
     <section className="py-32 px-4 md:px-12 w-full bg-background relative z-10 overflow-hidden">
-      <Spotlight className="-top-40 left-0 opacity-20" fill="white" />
       <div className="flex flex-col mb-20 relative z-10">
         <motion.h3 
           initial={{ opacity: 0, x: -20 }}
