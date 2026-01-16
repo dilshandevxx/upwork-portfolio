@@ -35,80 +35,51 @@ export function Services() {
   const [activeService, setActiveService] = useState<number | null>(null);
 
   return (
-    <section id="services" className="py-32 px-4 md:px-12 w-full bg-background relative z-10 overflow-hidden">
-      <div className="flex flex-col mb-20 relative z-10">
-        <motion.h3 
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          className="text-xs uppercase tracking-widest text-secondary mb-4"
-        >
-          My Expertise
-        </motion.h3>
-        <motion.h2 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
-          className="text-4xl md:text-6xl font-bold font-display"
-        >
-          Services
-        </motion.h2>
-      </div>
+    <section id="services" className="w-full bg-[#0a0a0a] border-t border-white/[0.05]">
+      <div className="grid grid-cols-1 md:grid-cols-12 divide-y md:divide-y-0 md:divide-x divide-white/[0.05] border-b border-white/[0.05]">
+        
+        {/* Header Column */}
+        <div className="col-span-1 md:col-span-4 p-6 md:p-8">
+          <h2 className="font-mono text-xs text-[#888] tracking-widest mb-4 uppercase">[ Services ]</h2>
+          <h3 className="text-3xl md:text-4xl font-display font-bold text-[#e6e6e6] uppercase leading-none">
+            Expertise &<br />Capabilities
+          </h3>
+        </div>
 
-      <div className="flex flex-col">
-        {services.map((service, index) => (
-          <motion.div
-            key={service.id}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: index * 0.1 }}
-            onMouseEnter={() => setActiveService(index)}
-            onMouseLeave={() => setActiveService(null)}
-            className="group border-t border-neutral-800 py-12 cursor-pointer relative overflow-hidden transition-colors duration-500 hover:bg-neutral-900/30"
-          >
-            <div className="flex flex-col md:flex-row md:items-baseline gap-6 md:gap-12 relative z-10">
-              <span className="text-sm font-mono text-secondary group-hover:text-primary transition-colors duration-300">
-                /{service.id}
-              </span>
-              
-              <div className="flex-1">
-                <h3 className="text-3xl md:text-5xl font-display font-medium group-hover:text-primary transition-colors duration-300">
-                  {service.title}
-                </h3>
-              </div>
+        {/* Content Column */}
+        <div className="col-span-1 md:col-span-8">
+           {services.map((service, index) => (
+             <div 
+               key={service.id} 
+               className="group grid grid-cols-1 md:grid-cols-12 border-b border-white/[0.05] last:border-b-0 min-h-[120px]"
+               onMouseEnter={() => setActiveService(index)}
+               onMouseLeave={() => setActiveService(null)}
+             >
+                {/* ID & Title */}
+                <div className="col-span-1 md:col-span-5 p-6 md:p-8 flex flex-col justify-between border-b md:border-b-0 md:border-r border-white/[0.05] bg-[#0a0a0a] group-hover:bg-[#111] transition-colors duration-300">
+                   <span className="font-mono text-xs text-[#666]">[{service.id}]</span>
+                   <h4 className="text-xl md:text-2xl font-bold uppercase text-[#ccc] group-hover:text-white transition-colors">
+                     {service.title}
+                   </h4>
+                </div>
 
-              <div className="md:w-1/3 overflow-hidden">
-                <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ 
-                    height: activeService === index ? "auto" : 0,
-                    opacity: activeService === index ? 1 : 0
-                  }}
-                  transition={{ duration: 0.3, ease: "easeInOut" }}
-                >
-                  <p className="text-secondary text-lg mb-4 text-balance">
-                    {service.description}
-                  </p>
-                  <div className="flex gap-2 flex-wrap">
-                    {service.tags.map((tag) => (
-                      <span key={tag} className="text-xs border border-white/10 px-2 py-1 rounded-full text-secondary">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </motion.div>
-                 {/* Mobile simplified view (always visible on small screens if needed, but keeping hidden for cleaner look or could be handled with CSS media queries if desired. For now, following hover logic or click for mobile) */}
-              </div>
+                {/* Description & Tags */}
+                <div className="col-span-1 md:col-span-7 p-6 md:p-8 flex flex-col justify-between bg-[#0a0a0a] group-hover:bg-[#111] transition-colors duration-300">
+                   <p className="text-sm text-[#888] leading-relaxed max-w-sm mb-6">
+                     {service.description}
+                   </p>
+                   <div className="flex flex-wrap gap-2">
+                      {service.tags.map(tag => (
+                        <span key={tag} className="font-mono text-[10px] uppercase border border-white/10 px-2 py-1 text-[#666] group-hover:border-white/30 group-hover:text-[#ccc] transition-colors">
+                          {tag}
+                        </span>
+                      ))}
+                   </div>
+                </div>
+             </div>
+           ))}
+        </div>
 
-              <div className="hidden md:flex items-center justify-center">
-                 <Plus className={`w-6 h-6 text-secondary transition-transform duration-300 ${activeService === index ? "rotate-45 text-white" : ""}`} />
-              </div>
-            </div>
-          </motion.div>
-        ))}
-        <div className="border-t border-neutral-800" />
       </div>
     </section>
   );

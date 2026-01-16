@@ -1,14 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const thumbnails = [
-  { id: "01", src: "/projects/1.jpg", alt: "Project 1" },
-  { id: "02", src: "/projects/2.jpg", alt: "Project 2" },
-  { id: "03", src: "/projects/3.jpg", alt: "Project 3" },
-  { id: "04", src: "/projects/4.jpg", alt: "Project 4" },
-  { id: "05", src: "/projects/5.jpg", alt: "Project 5" },
+  { id: "01", src: "/projects/1.png", alt: "Project 1" },
+  { id: "02", src: "/projects/2.png", alt: "Project 2" },
+  { id: "03", src: "/projects/3.png", alt: "Project 3" },
+  { id: "04", src: "/projects/4.png", alt: "Project 4" },
+  { id: "05", src: "/projects/5.png", alt: "Project 5" },
 ];
 
 export function Hero() {
@@ -39,14 +40,14 @@ export function Hero() {
       <div className="relative z-10 w-full flex justify-between items-start font-mono text-[10px] md:text-xs tracking-widest text-[#888]">
         {/* Left: Name */}
         <div className="uppercase">
-          Dilshan Portfolio
+          DILSHAN PORTFOLIO
         </div>
 
         {/* Right: Navigation Links (Aligned to columns roughly) */}
         <div className="flex gap-12 md:gap-24">
-           <span className="text-[#ccff00]">[ WORK ]</span>
-           <span className="hover:text-white cursor-pointer transition-colors">INFO</span>
-           <span className="hover:text-white cursor-pointer transition-colors">ARCHIVE</span>
+           <Link href="#work" className="text-[#ccff00] hover:opacity-80 transition-opacity">[ WORK ]</Link>
+           <Link href="#about" className="hover:text-white cursor-pointer transition-colors">INFO</Link>
+           <Link href="#contact" className="hover:text-white cursor-pointer transition-colors">ARCHIVE</Link>
         </div>
       </div>
 
@@ -83,14 +84,17 @@ export function Hero() {
       </div>
 
       {/* Bottom Thumbnails Strip */}
-      <div className="relative z-10 w-full h-32 md:h-48 mt-auto grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-px border-t border-white/[0.03] pt-4 md:pt-0">
+      <div className="relative z-10 w-full h-32 md:h-48 mt-auto grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-px border-t border-white/[0.05] pt-4 md:pt-0">
          {thumbnails.map((item, i) => (
-           <div key={i} className="relative group w-full h-full md:border-r md:border-white/[0.03] md:last:border-r-0 flex flex-col justify-end p-2 md:p-4">
+           <div key={i} className="relative group w-full h-full md:border-r md:border-white/[0.05] md:last:border-r-0 flex flex-col justify-end p-2 md:p-4">
               
               {/* Image Container */}
               <div className="absolute inset-0 md:inset-x-0 md:bottom-0 h-full md:h-[80%] bg-[#111] overflow-hidden">
-                  <div className="w-full h-full bg-neutral-800 group-hover:bg-neutral-700 transition-colors duration-500 opacity-60 group-hover:opacity-100" />
-                  {/* Real Image would go here */}
+                  <img 
+                    src={item.src} 
+                    alt={item.alt}
+                    className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-500 hover:scale-110 transform transition-transform"
+                  />
               </div>
 
               {/* Number Label */}

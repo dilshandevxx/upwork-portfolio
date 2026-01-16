@@ -3,68 +3,54 @@
 import { motion } from "framer-motion";
 
 const skills = [
-  "Next.js",
-  "React",
-  "TypeScript",
-  "Tailwind CSS",
-  "Three.js",
-  "Node.js",
-  "AWS",
-  "Figma",
+  "Next.js", "React", "TypeScript", "Tailwind CSS",
+  "Three.js", "Node.js", "AWS", "Figma"
 ];
 
 export function About() {
   return (
-    <section id="about" className="py-24 px-4 md:px-12 w-full bg-neutral-900 border-t border-white/5 relative overflow-hidden">
-      <div className="flex flex-col md:flex-row gap-16 md:gap-32 relative z-10">
-        <div className="flex-1">
-          <motion.h3 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-xs uppercase tracking-widest text-secondary mb-8"
-          >
-            About Me
-          </motion.h3>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-2xl md:text-3xl leading-relaxed font-light text-neutral-300 text-balance"
-          >
-            I am a creative developer passionate about building digital products that matter. 
-            With a focus on <span className="text-white font-medium">motion</span>, <span className="text-white font-medium">aesthetics</span>, and <span className="text-white font-medium">performance</span>, 
-            I help brands stand out in the digital noise.
-          </motion.p>
-        </div>
-
-        <div className="flex-1">
-          <motion.h3 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-xs uppercase tracking-widest text-secondary mb-8"
-          >
-            Capabilities
-          </motion.h3>
-          <div className="grid grid-cols-2 gap-x-8 gap-y-4">
-            {skills.map((skill, index) => (
-              <motion.div
-                key={skill}
-                initial={{ opacity: 0, x: -10 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05, duration: 0.5 }}
-                className="flex items-center gap-3 group"
-              >
-                <div className="w-1.5 h-1.5 bg-neutral-700 rounded-full group-hover:bg-primary transition-colors" />
-                <span className="text-neutral-400 group-hover:text-white transition-colors">{skill}</span>
-              </motion.div>
-            ))}
+    <section id="about" className="w-full bg-[#0a0a0a] border-b border-white/[0.05]">
+       <div className="grid grid-cols-1 md:grid-cols-12 divide-y md:divide-y-0 md:divide-x divide-white/[0.05]">
+          
+          {/* Left Column: Title (Vertical Text on Desktop?) */}
+          <div className="col-span-1 md:col-span-1 p-6 flex items-center justify-center md:writing-mode-vertical-rl md:rotate-180">
+              <span className="font-mono text-xs text-[#888] tracking-widest uppercase whitespace-nowrap">
+                [ About Profile ]
+              </span>
           </div>
-        </div>
-      </div>
+
+          {/* Middle Column: Bio */}
+          <div className="col-span-1 md:col-span-7 p-8 md:p-16 flex flex-col justify-center">
+             <h3 className="text-lg md:text-2xl leading-relaxed text-[#ccc] font-light max-w-2xl">
+               <span className="text-[#666] font-mono text-xs block mb-6 uppercase tracking-widest">/ Biography</span>
+               I am a creative developer building digital products that matter. 
+               Focusing on <span className="text-white font-medium">motion</span>, <span className="text-white font-medium">aesthetics</span>, and <span className="text-white font-medium">performance</span>.
+               I blend technical precision with artistic direction.
+             </h3>
+          </div>
+
+          {/* Right Column: Tech Stack (Data List) */}
+          <div className="col-span-1 md:col-span-4 bg-[#0d0d0d] flex flex-col">
+             <div className="p-6 border-b border-white/[0.05]">
+                 <span className="font-mono text-xs text-[#666] uppercase tracking-widest">/ Capabilities</span>
+             </div>
+             <div className="flex-1 p-6">
+                <ul className="grid grid-cols-1 gap-2">
+                   {skills.map((skill, i) => (
+                     <li key={i} className="font-mono text-xs text-[#888] flex justify-between group cursor-default">
+                        <span className="group-hover:text-white transition-colors">{skill}</span>
+                        <span className="text-[#333] group-hover:text-[#ccff00] transition-colors">[+]</span>
+                     </li>
+                   ))}
+                </ul>
+             </div>
+             <div className="p-6 border-t border-white/[0.05]">
+                <span className="font-mono text-[10px] text-[#444] uppercase">
+                   Updated: 2026.01.16
+                </span>
+             </div>
+          </div>
+       </div>
     </section>
   );
 }

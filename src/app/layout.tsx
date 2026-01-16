@@ -41,7 +41,6 @@ export default function RootLayout({
         <SmoothScroll>
           <Noise />
           <Cursor />
-          <Navbar />
           {children}
         </SmoothScroll>
       </body>
