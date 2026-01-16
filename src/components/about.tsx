@@ -15,7 +15,7 @@ const skills = [
 
 export function About() {
   return (
-    <section className="py-24 px-4 md:px-12 w-full bg-neutral-900 border-t border-white/5 relative overflow-hidden">
+    <section id="about" className="py-24 px-4 md:px-12 w-full bg-neutral-900 border-t border-white/5 relative overflow-hidden">
       <div className="flex flex-col md:flex-row gap-16 md:gap-32 relative z-10">
         <div className="flex-1">
           <motion.h3 

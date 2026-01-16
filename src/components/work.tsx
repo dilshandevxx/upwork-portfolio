@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export function Work() {
   return (
-    <section className="py-24 px-4 md:px-12 w-full bg-neutral-950 relative z-10 overflow-hidden">
+    <section id="work" className="py-24 px-4 md:px-12 w-full bg-neutral-950 relative z-10 overflow-hidden">
       <div className="flex flex-col mb-16 relative z-10">
         <motion.h3 
           initial={{ opacity: 0, x: -20 }}

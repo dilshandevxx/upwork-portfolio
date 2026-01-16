@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export function Contact() {
   return (
-    <footer className="w-full bg-black text-white py-24 px-4 md:px-12 relative overflow-hidden">
+    <footer id="contact" className="w-full bg-black text-white py-24 px-4 md:px-12 relative overflow-hidden">
       <div className="flex flex-col items-center justify-center text-center max-w-4xl mx-auto relative z-10">
         <motion.p 
           initial={{ opacity: 0, y: 20 }}

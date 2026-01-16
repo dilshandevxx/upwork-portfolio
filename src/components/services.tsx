@@ -35,7 +35,7 @@ export function Services() {
   const [activeService, setActiveService] = useState<number | null>(null);
 
   return (
-    <section className="py-32 px-4 md:px-12 w-full bg-background relative z-10 overflow-hidden">
+    <section id="services" className="py-32 px-4 md:px-12 w-full bg-background relative z-10 overflow-hidden">
       <div className="flex flex-col mb-20 relative z-10">
         <motion.h3 
           initial={{ opacity: 0, x: -20 }}

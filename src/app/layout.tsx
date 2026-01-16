@@ -3,6 +3,7 @@ import { Inter, Syne } from "next/font/google";
 import { SmoothScroll } from "@/components/smooth-scroll";
 import { Cursor } from "@/components/ui/cursor";
 import { Noise } from "@/components/ui/noise";
+import { Navbar } from "@/components/navbar";
 import { cn } from "@/lib/utils";
 import "./globals.css";
 
@@ -40,6 +41,7 @@ export default function RootLayout({
         <SmoothScroll>
           <Noise />
           <Cursor />
+          <Navbar />
           {children}
         </SmoothScroll>
       </body>
